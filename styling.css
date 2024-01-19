@@ -1,0 +1,58 @@
+html {
+    background-color: darkseagreen;
+    align-content: space-between;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    font-family:'Franklin Gothic Medium', 'Arial', Arial, sans-serif;
+}
+
+h1 {
+    font-size: 150px;
+}
+
+button {
+    height: fit-content;
+    width: fit-content;
+}
+
+p {
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.score-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.score-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+}
+
+.score-number{
+    
+}
+
+.word-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.insert-words {
+    height: 20px;
+    input {
+        height: 90px;
+    }   
+}
