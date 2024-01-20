@@ -1,53 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styling.css">
     <title>Alias</title>
 </head>
 <script src="script.js"></script>
-<body>
+
+<body onload="onLoad()">
     <div class="header">
         <h3>Alias</h3>
-        <button>Endre ord</button>
+        <div>
+            <button id="change-words" onclick="changeWords()">Endre ord</button>
+            <button id="change-players" onclick="changePlayers()">Endre spillere</button>
+            <button id="return-to-game" style="display: none" onclick="returnToGame()">Tilbake til spill</button>
+        </div>
     </div>
-    <div class="score-section">
-        <div class="score-board">
-            <p>Spiller 1</p>
-            <p class="score-number">0</p>
+    <div class="score-section" id="scoreSection">
+        <div class="score-board" id="player1" style="display: none">
+            <p class="player-name">Spiller 1</p>
+            <p class="score-number" id="score1">0</p>
             <div>
-                <button>-</button>
-                <button>+</button>
+                <button class="score-decrease-button" id="1" onclick="scoreClickMin(this.id)">-</button>
+                <button class="score-increase-button" id="1" onclick="scoreClickPlus(this.id)">+</button>
             </div>
         </div>
-        <div class="score-board">
-            <p>Spiller 2</p>
-            <p>0</p>
+        <div class="score-board" id="player2" style="display: none">
+            <p class="player-name">Spiller 2</p>
+            <p class="score-number" id="score2">0</p>
             <div>
-                <button>-</button>
-                <button>+</button>
+                <button class="score-decrease-button" id="2" onclick="scoreClickMin(this.id)">-</button>
+                <button class="score-increase-button" id="2" onclick="scoreClickPlus(this.id)">+</button>
             </div>
         </div>
-        <div class="score-board">
-            <p>Spiller 3</p>
-            <p>0</p>
+        <div class="score-board" id="player3" style="display: none">
+            <p class="player-name">Spiller 3</p>
+            <p class="score-number" id="score3">0</p>
             <div>
-                <button>-</button>
-                <button>+</button>
+                <button class="score-decrease-button" id="3" onclick="scoreClickMin(this.id)">-</button>
+                <button class="score-increase-button" id="3" onclick="scoreClickPlus(this.id)">+</button>
             </div>
+        </div>
+        <div class="score-board" id="player4" style="display: none">
+            <p class="player-name">Spiller 4</p>
+            <p class="score-number" id="score4">0</p>
+            <div>
+                <button class="score-decrease-button" id="4" onclick="scoreClickMin(this.id)">-</button>
+                <button class="score-increase-button" id="4" onclick="scoreClickPlus(this.id)">+</button>
+            </div>
+        </div>
+        <div class="score-board" id="player5" style="display: none">
+            <p class="player-name">Spiller 5</p>
+            <p class="score-number" id="score5">0</p>
+            <div>
+                <button class="score-decrease-button" id="5" onclick="scoreClickMin(this.id)">-</button>
+                <button class="score-increase-button" id="5" onclick="scoreClickPlus(this.id)">+</button>
+            </div>
+        </div>
+        <div class="score-board" id="player6" style="display: none">
+            <p class="player-name">Spiller 6</p>
+            <p class="score-number" id="score6">0</p>
+            <div>
+                <button class="score-decrease-button" id="6" onclick="scoreClickMin(this.id)">-</button>
+                <button class="score-increase-button" id="6" onclick="scoreClickPlus(this.id)">+</button>
+            </div>
+        </div>
+        <div class="change-player-buttons">
+            <button id="plusPlayer" style="display: none" onclick="plusPlayer()">Legg til spiller</button>
+            <button id="minPlayer" style="display: none" onclick="minPlayer()">Fjern en spiller</button>
+            <button id="resetPlayer" style="display: none" onclick="resetPlayers()">Nullstill alle spillere</button>
         </div>
 
     </div>
-    <div class="word-section">
-        <h1>xxxxx</h1>
+    <div class="word-section" id="wordSection">
+        <h1 id="currentWord" style="color: #696969">Alias</h1>
         <div class="word-buttons">
-            <button>Forrige</button>
-            <button>Neste</button>
+            <button id="previousWordButton" disabled="true" onclick="previousWord()">Forrige ord</button>
+            <button id="nextWordButton" onclick="nextWord()">Neste ord</button>
         </div>
     </div>
-    <div class="insert-words">
+    <div class="insert-words" id="wordListSection" style="display: none">
         <h3>Ordliste</h3>
-        <input type="">
+        <p>Bruk komma mellom ordene du vil at skal være med i spillet.</p>
+        <p>Eksempel: hund,katt,spille gitar,klokke</p>
+        <textarea id="textArea"></textarea>
     </div>
 </body>
+
 </html>
