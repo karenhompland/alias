@@ -100,7 +100,7 @@ function returnToGame() {
     document.getElementById("minPlayer").style.display="none";
     document.getElementById("change-players").style.display="flex";
     document.getElementById("change-words").style.display="flex";
-    document.getElementById("wordSection").style.display="block";
+    document.getElementById("wordSection").style.display="flex";
     document.getElementById("wordListSection").style.display="none";
     document.getElementById("scoreSection").style.display="flex";
     document.getElementById("resetPlayer").style.display="none";
