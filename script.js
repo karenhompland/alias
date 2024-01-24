@@ -181,5 +181,6 @@ function restartGame() {
     document.getElementById("currentWord").innerText="Alias";
     document.getElementById("currentWord").style.color="#696969";
     document.getElementById("previousWordButton").disabled = true;
+    document.getElementById("nextWordButton").disabled = false;
 
 }
