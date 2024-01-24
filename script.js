@@ -1,10 +1,13 @@
 var scoreList;
 var numOfPlayers;
 var wordList;
+var noOfWords;
 var wordCount=0;
+var usedWords;
 
 function onLoad() {
     checkLocalStorage();
+    usedWords=[];
     for (const x of Array(numOfPlayers).keys()) {
         document.getElementById(`player${x + 1}`).style.display = "flex";
     }
@@ -23,6 +26,7 @@ function checkLocalStorage() {
     }
     if (localStorage.getItem('wordlist') != null) {
         wordList = localStorage.getItem('wordlist').split(",");
+        noOfWords = wordList.length;
     }
 }
 
@@ -87,6 +91,7 @@ function changePlayers() {
     document.getElementById("change-players").style.display="none";
     document.getElementById("change-words").style.display="none";
     document.getElementById("resetPlayer").style.display="block";
+    document.getElementById("restartGameButton").style.display="none";
     const playerNames = document.querySelectorAll('.player-name');
     playerNames.forEach(element => {
         element.contentEditable = "true";
@@ -104,12 +109,18 @@ function returnToGame() {
     document.getElementById("wordListSection").style.display="none";
     document.getElementById("scoreSection").style.display="flex";
     document.getElementById("resetPlayer").style.display="none";
+    document.getElementById("restartGameButton").style.display="flex";
     const playerNames = document.querySelectorAll('.player-name');
     playerNames.forEach(element => {
         element.contentEditable = "false";
         element.style.textDecoration = "none";
     });
     localStorage.setItem("wordlist",document.getElementById("textArea").value);
+    if (localStorage.getItem('wordlist') != null) {
+        wordList = localStorage.getItem('wordlist').split(",");
+        noOfWords = wordList.length;
+    }
+    usedWords = [];
 }
 
 function changeWords() {
@@ -119,6 +130,7 @@ function changeWords() {
     document.getElementById("wordSection").style.display="none";
     document.getElementById("wordListSection").style.display="block";
     document.getElementById("scoreSection").style.display="none";
+    document.getElementById("restartGameButton").style.display="none";
     
 }
 
@@ -131,9 +143,15 @@ function resetPlayers () {
 function nextWord() {
     document.getElementById("currentWord").style.color="#000000";
     document.getElementById("previousWordButton").disabled = false;
-    wordCount++;
-    if (wordCount<=wordList.length) {
-        document.getElementById("currentWord").innerText=wordList.at(wordCount-1);
+    min = Math.ceil(0);
+    max = Math.floor(wordList.length-1);
+    randomInt= Math.floor(Math.random() * (max - min + 1)) + min;
+
+    if (wordList.length>0 && wordList.at(randomInt).length>=1) {
+        usedWords.push(wordList.at(randomInt)); 
+        document.getElementById("currentWord").innerText=wordList.at(randomInt);
+        wordList.splice(randomInt,1);
+        noOfWords--;
     }
     else {
         document.getElementById("currentWord").innerText="Ingen ord igjen";
@@ -145,13 +163,23 @@ function nextWord() {
 function previousWord() {
     document.getElementById("nextWordButton").disabled = false;
     document.getElementById("currentWord").style.color="#000000";
-    wordCount--;
-    if (wordCount!=0) {
-        document.getElementById("currentWord").innerText=wordList.at(wordCount-1);
+    if (usedWords.length!=0) {
+        document.getElementById("currentWord").innerText=usedWords.pop(-1);
     }
     else {
         document.getElementById("currentWord").innerText="Alias";
         document.getElementById("currentWord").style.color="#696969";
         document.getElementById("previousWordButton").disabled = true;
+        restartGame();
     }
+}
+
+function restartGame() {
+    usedWords = [];
+    wordList = localStorage.getItem('wordlist').split(",");
+    noOfWords = wordList.length;
+    document.getElementById("currentWord").innerText="Alias";
+    document.getElementById("currentWord").style.color="#696969";
+    document.getElementById("previousWordButton").disabled = true;
+
 }

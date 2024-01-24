@@ -92,3 +92,10 @@ textarea {
 .player-name {
     font-size: large;
 }
+
+.adminButtons {
+    display: flex;
+    button {
+        margin-right: 10px;
+    }
+}
